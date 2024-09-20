@@ -1,11 +1,9 @@
 import argparse
-import json
 import os
 import sys
-from project import Project
-from projects import get_projects, save_projects, remove_item, remove_cache
-from selector import open_in_kitty, run
-from utils import Config
+from kshort.projects import get_projects, remove_item, remove_cache
+from kshort.selector import open_in_kitty, run
+from kshort.utils import Config
 
 def add_binding_to_kitty(project):
     kitty_config_path = os.path.expanduser("~/.config/kitty/kitty.conf")

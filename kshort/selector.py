@@ -1,7 +1,6 @@
 import os
 import glob
-from project import Project
-from config import Config
+from kshort.project import Project
 import subprocess
 
 def run(config):

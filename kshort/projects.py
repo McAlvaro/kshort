@@ -1,6 +1,6 @@
 import os
 import json
-from project import Project
+from kshort.project import Project
 
 CACHE_FILE = os.path.expanduser("~/.config//projects_manager.json")
 
