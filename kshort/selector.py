@@ -48,7 +48,6 @@ def run(config):
             selected_index = options.index(selected_option)
             return projects[selected_index]
         else:
-            print("No project selected.")
             return None
     except subprocess.CalledProcessError as e:
         print(f"Failed to run fzf: {e}")
