@@ -2,7 +2,7 @@ import argparse
 import os
 import sys
 from kshort.projects import get_projects, remove_item, remove_cache
-from kshort.selector import open_in_kitty, run
+from kshort.selector import open_in_gnome_terminal, open_in_kitty, run
 from kshort.utils import Config
 
 def add_binding_to_kitty(project):
@@ -25,6 +25,7 @@ def main():
     parser.add_argument('--forget', type=str, help='Forget a project')
     parser.add_argument('--list', action='store_true', help='List all projects')
     parser.add_argument('--remove-cache', action='store_true', help='Remove cache file')
+    parser.add_argument('-g', action='store_true', help='Open in Gnome Terminal')
 
     args = parser.parse_args()
     config = Config.load(args.config_file)
@@ -57,7 +58,10 @@ def main():
     selected_project = run(config)
     if selected_project:
         # print(f"Selected project: {selected_project.name}")
-        open_in_kitty(selected_project)
+        if args.g:
+            open_in_gnome_terminal(selected_project)
+        else:
+            open_in_kitty(selected_project)
     else:
         print("No project selected.")
 

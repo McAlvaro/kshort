@@ -41,11 +41,9 @@ def run(config):
             text=True,
             # capture_output=True
             stdout=subprocess.PIPE,
-            # stderr=subprocess.PIPE
         )
         selected_option = result.stdout.strip()
         
-        # Encuentra el índice del proyecto seleccionado
         if selected_option:
             selected_index = options.index(selected_option)
             return projects[selected_index]
@@ -63,12 +61,22 @@ def open_in_kitty(project: Project):
         '--cwd', project.path,  # Establece el directorio de trabajo
         '--title', project.name,  # Opcional: Establece el título de la ventana
         '--copy-env',
-        'nvim', project.path,  # Opcional: Establece el título de la ventana
+        'nvim', project.path, 
         # '&'
     ]
 
     try:
         subprocess.run(kitty_command, check=True)
         # print(f"Opened Kitty session for project: {project.name}")
+    except subprocess.CalledProcessError as e:
+        print(f"Failed to open Kitty session: {e}")
+
+def open_in_gnome_terminal(project: Project):
+    command = ['gnome-terminal',
+    '--',
+    'nvim', project.path]
+
+    try:
+        subprocess.run(command, check=True)
     except subprocess.CalledProcessError as e:
         print(f"Failed to open Kitty session: {e}")
