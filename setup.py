@@ -1,10 +1,11 @@
 from setuptools import setup, find_packages
+from pathlib import Path
 
 VERSION = '0.0.9'
 DESCRIPTION = 'Module to manage your projects using kitty and neovim'
 
-with open('README.md', 'r') as readme_file:
-    long_description = readme_file.read()
+this_directory = Path(__file__).parent
+long_description = (this_directory / "README.md").read_text()
 
 setup(
     name="kshort",
